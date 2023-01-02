@@ -7,7 +7,7 @@ header {
     margin-bottom: 50px;
 }
 
-.highscore-button {
+button {
     padding: 5px 12px;
     background-color: rgba(96, 50, 168, 1);
     color: white;
@@ -24,16 +24,38 @@ header {
     font-size: 20px;
 }
 
-/* Main body content */
+/* body styling */
 main {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
-.quiz {
+
+.quiz-intro {
+    text-align: center;
     width: 60%;
+    margin: 0 auto;
 }
 
 h1 {
+    margin-bottom: 10px;
+}
+
+.intro-p {
+    margin-bottom: 10px;
+}
+
+.start-quiz:hover {
+    background-color: rgba(96, 50, 168, 0.5);
+    cursor: pointer;
+}
+
+.quiz-content {
+    width: 60%;
+    display: none;
+}
+
+.question {
     font-size: 32px;
     margin-bottom: 20px;
 }
