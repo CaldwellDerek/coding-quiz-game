@@ -11,6 +11,8 @@ let answer3 = document.querySelector(".answer-3");
 let answer4 = document.querySelector(".answer-4");
 let rightOrWrong = document.querySelector(".right-wrong");
 let playerScore = document.querySelector(".score");
+let playerInitials = document.querySelector("#name");
+let submitScoreButton = document.querySelector(".submit-highscore");
 
 // These variables hold the questions for the quiz and the corresponding answers
 let quizQuestions = [
@@ -50,8 +52,8 @@ function countdown() {
             clearInterval(timeInterval);
             timer.textContent = "Timer: ";
         }
-        console.log(timeLeft);
-        console.log(`index = ${index}`);
+        // console.log(timeLeft);
+        // console.log(`index = ${index}`);
     }, 1000);
 }
 
@@ -83,7 +85,7 @@ startButton.addEventListener("click", ()=> {
     setQuiz();
 });
 
-// FINISH THE OTHER QUESTIONS USING THIS FORMAT! -----------------------------------------
+
 
 
 answer1.addEventListener("click", ()=> {
@@ -137,3 +139,14 @@ answer4.addEventListener("click", ()=> {
     index++;
     setQuiz();
 });
+
+submitScoreButton.addEventListener("click", ()=> {
+    let initials = playerInitials.value;
+    const regex = new RegExp(/^[A-Za-z]+$/);
+    if (initials === '' || !initials.match(regex) || initials.length > 3){
+        window.alert("Please enter only letters for your initials - no more than 3 letters.");
+    } else {
+        // TO DO
+        // SAVE INITIALS AND HIGHSCORE, TRANSITION TO HIGHSCORES PAGE
+    }
+})
