@@ -1,9 +1,11 @@
-// These variables hold the corresponding elements in the HTML document
+
 let quizIntro = document.querySelector(".quiz-intro");
 let quizContent = document.querySelector(".quiz-content");
 let quizEnd = document.querySelector(".quiz-end");
-let startButton = document.querySelector(".start-quiz");
+let highscorePage = document.querySelector(".highscore-page");
 let timer = document.querySelector(".timer");
+let seeHighscoresButton = document.querySelector(".highscore-button");
+let startButton = document.querySelector(".start-quiz");
 let question = document.querySelector(".question");
 let answer1 = document.querySelector(".answer-1");
 let answer2 = document.querySelector(".answer-2");
@@ -13,6 +15,8 @@ let rightOrWrong = document.querySelector(".right-wrong");
 let playerScore = document.querySelector(".score");
 let playerInitials = document.querySelector("#name");
 let submitScoreButton = document.querySelector(".submit-highscore");
+let playAgainButton = document.querySelector(".back-to-start");
+let clearScoresButton = document.querySelector(".clear-scores");
 
 // These variables hold the questions for the quiz and the corresponding answers
 let quizQuestions = [
@@ -31,7 +35,6 @@ let quizAnswers = [
 // Keeps track of the index for quizQuestions and quizAnswers
 let index = 0;
 let timeLeft = 60;
-// let score = 0;
 
 // Function that starts the timer
 function countdown() {
@@ -48,13 +51,13 @@ function countdown() {
             quizEnd.setAttribute("style", "display: block;");
             playerScore.textContent = `Your score is: ${timeLeft}`;
             timer.textContent = "Timer: ";
-        } else if (index >= 4){
+            timeLeft = 60;
+        } else if (index >= 4 || quizContent.getAttribute("data-display") === "hidden"){
             clearInterval(timeInterval);
             timer.textContent = "Timer: ";
-        }
-        // console.log(timeLeft);
-        // console.log(`index = ${index}`);
-    }, 1000);
+            timeLeft = 60;
+        } 
+    }, 100);
 }
 
 // Function that Changes Quiz and Answer text - proceeds to score page if out of questions
@@ -76,17 +79,21 @@ function setQuiz() {
     }
 }
 
-
+seeHighscoresButton.addEventListener("click", ()=> {
+    quizIntro.setAttribute("style", "display: none;");
+    quizContent.setAttribute("style", "display: none;");
+    quizContent.setAttribute("data-display", "hidden")
+    quizEnd.setAttribute("style", "display: none;");
+    highscorePage.setAttribute("style", "display: block;");
+});
 
 startButton.addEventListener("click", ()=> {
     quizIntro.setAttribute("style", "display: none;");
     quizContent.setAttribute("style", "display: block;");
+    quizContent.setAttribute("data-display", "visible");
     countdown();
     setQuiz();
 });
-
-
-
 
 answer1.addEventListener("click", ()=> {
     if (question.textContent ===  quizQuestions[0]){
@@ -146,7 +153,16 @@ submitScoreButton.addEventListener("click", ()=> {
     if (initials === '' || !initials.match(regex) || initials.length > 3){
         window.alert("Please enter only letters for your initials - no more than 3 letters.");
     } else {
-        // TO DO
-        // SAVE INITIALS AND HIGHSCORE, TRANSITION TO HIGHSCORES PAGE
+        quizEnd.setAttribute("style", "display: none;");
+        highscorePage.setAttribute("style", "display: block;");
     }
+})
+
+playAgainButton.addEventListener("click", ()=> {
+    highscorePage.setAttribute("style", "display: none;")
+    quizIntro.setAttribute("style", "display: block;");
+})
+
+clearScoresButton.addEventListener("click", ()=> {
+
 })

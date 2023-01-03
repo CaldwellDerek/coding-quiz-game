@@ -1,4 +1,9 @@
 
+* {
+    background-color: black;
+    color: white;
+}
+
 /* header content */
 header {
     display: flex;
@@ -33,6 +38,7 @@ main {
 }
 
 .quiz-intro {
+    /* display: none; */
     text-align: center;
     width: 60%;
     margin: 0 auto;
@@ -88,5 +94,15 @@ span {
 }
 
 .quiz-end p {
+    margin-bottom: 20px;
+}
+
+/* Highscore page */
+
+.highscore-page {
+    display: none;
+}
+
+.highscore-page h2 {
     margin-bottom: 20px;
 }

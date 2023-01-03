@@ -17,7 +17,7 @@
                 <button class="start-quiz">Start Quiz!</button>
             </section>
            <!-- This will hold the questions--> 
-           <section class="quiz-content">
+           <section class="quiz-content" data-display="hidden">
             <h2 class="question">Placeholder text for quiz Question</h2>
             <ul>
                 <li><span class="answer-1">1. Placeholder Answer</span></li>
@@ -34,7 +34,14 @@
                 <input type="text" id="name" name="name" required>
                 <button class="submit-highscore" type="button">Submit Highscore!</button>
            </section>
-           
+           <section class="highscore-page">
+                <h2>Highscores</h2>
+                <ol class="highscore-list">
+                    <ul class="highscore">Test</ul>
+                </ol>
+                <button class="back-to-start">Play Again!</button>
+                <button class="clear-scores">Clear Highscores</button>
+           </section>
         </main>
         <script src="./assets/js/script.js"></script>
     </body>
