@@ -1,6 +1,7 @@
 // These variables hold the corresponding elements in the HTML document
 let quizIntro = document.querySelector(".quiz-intro");
 let quizContent = document.querySelector(".quiz-content");
+let quizEnd = document.querySelector(".quiz-end");
 let startButton = document.querySelector(".start-quiz");
 let timer = document.querySelector(".timer");
 let question = document.querySelector(".question");
@@ -9,37 +10,52 @@ let answer2 = document.querySelector(".answer-2");
 let answer3 = document.querySelector(".answer-3");
 let answer4 = document.querySelector(".answer-4");
 let rightOrWrong = document.querySelector(".right-wrong");
+let playerScore = document.querySelector(".score");
 
 // These variables hold the questions for the quiz and the corresponding answers
-let quizQuestions = ["Which of these is used to declare a single-line comment in JavaScript?",
+let quizQuestions = [
+                "Which of these is used to declare a single-line comment in JavaScript?",
                 "What is the correct way to output 'Hello World!' in JavaScript?",
                 "Which is a viable way to create a variable in JavaScript?",
                 "Which HTML element links a JavaScript file?"
             ];
-let quizAnswers = [["//", "!-", "/*", "/-"], 
+let quizAnswers = [
+                ["//", "!-", "/*", "/-"], 
                 ["System.log('Hello World!');", "print('Hello World!');", "console.log('Hello World!');", "System.out.println('Hello World!');"], 
                 ["int = myVariable;", "container = myVariable;", "boolean = myVariable;", "let = myVariable;"], 
                 ["<link>", "<script>", "<js>", "<p>"]
             ];
-            
+
 // Keeps track of the index for quizQuestions and quizAnswers
 let index = 0;
+let timeLeft = 60;
+// let score = 0;
 
 // Function that starts the timer
 function countdown() {
-    let timeLeft = 60;
     timer.textContent = `Timer: ${timeLeft}`;
     let timeInterval = setInterval( ()=> {
-        timeLeft --;
-        timer.textContent = `Timer: ${timeLeft}`;
-        if (timeLeft == 0){
-            clearInterval(timeInterval);
-            timer.textContent = "Timer: 0";
+        if (timeLeft >= 1){
+            timeLeft--;
         }
+        timer.textContent = `Timer: ${timeLeft}`;
+        if (timeLeft <= 0){
+            clearInterval(timeInterval);
+            timeLeft = 0;
+            quizContent.setAttribute("style", "display: none;");
+            quizEnd.setAttribute("style", "display: block;");
+            playerScore.textContent = `Your score is: ${timeLeft}`;
+            timer.textContent = "Timer: ";
+        } else if (index >= 4){
+            clearInterval(timeInterval);
+            timer.textContent = "Timer: ";
+        }
+        console.log(timeLeft);
+        console.log(`index = ${index}`);
     }, 1000);
 }
 
-// Function that Changes Quiz and Answer text
+// Function that Changes Quiz and Answer text - proceeds to score page if out of questions
 function setQuiz() {
     if (index <= 3 && index >= 0){
         question.textContent = quizQuestions[index];
@@ -47,8 +63,15 @@ function setQuiz() {
         answer2.textContent = quizAnswers[index][1];
         answer3.textContent = quizAnswers[index][2];
         answer4.textContent = quizAnswers[index][3];
-        index ++;
-    };
+    } else {
+        if (timeLeft <= 0){
+            timeLeft = 0;
+        }
+        quizContent.setAttribute("style", "display: none;");
+        quizEnd.setAttribute("style", "display: block;");
+        playerScore.textContent = `Your score is: ${timeLeft}`;
+        timer.textContent = "Timer: ";
+    }
 }
 
 
@@ -69,8 +92,10 @@ answer1.addEventListener("click", ()=> {
         rightOrWrong.setAttribute("style", "display: block;")
     } else {
         rightOrWrong.textContent = "Wrong!";
+        timeLeft -= 15;
         rightOrWrong.setAttribute("style", "display: block;")
     }
+    index++;
     setQuiz();
 });
 
@@ -81,7 +106,9 @@ answer2.addEventListener("click", ()=> {
     } else {
         rightOrWrong.textContent = "Wrong!";
         rightOrWrong.setAttribute("style", "display: block;")
+        timeLeft -= 15;
     }
+    index++;
     setQuiz();
 });
 
@@ -92,7 +119,9 @@ answer3.addEventListener("click", ()=> {
     } else {
         rightOrWrong.textContent = "Wrong!";
         rightOrWrong.setAttribute("style", "display: block;")
+        timeLeft -= 15;
     }
+    index++;
     setQuiz();
 });
 
@@ -103,6 +132,8 @@ answer4.addEventListener("click", ()=> {
     } else {
         rightOrWrong.textContent = "Wrong!";
         rightOrWrong.setAttribute("style", "display: block;")
+        timeLeft -= 15;
     }
+    index++;
     setQuiz();
 });

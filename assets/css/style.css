@@ -14,7 +14,8 @@ button {
     border-radius: 7px;
 }
 
-.highscore-button:hover {
+button:hover,
+span:hover {
     cursor: pointer;
     background-color: rgba(96, 50, 168, 0.5);
 }
@@ -45,11 +46,6 @@ h1 {
     margin-bottom: 10px;
 }
 
-.start-quiz:hover {
-    background-color: rgba(96, 50, 168, 0.5);
-    cursor: pointer;
-}
-
 .quiz-content {
     width: 60%;
     display: none;
@@ -76,13 +72,21 @@ span {
     border-radius: 7px;
 }
 
-span:hover{
-    background-color: rgba(96, 50, 168, 0.5);
-    cursor: pointer;
-}
-
 .right-wrong {
     border-top: 2px solid lightgrey;
     padding-top: 10px;
     display: none;
+}
+
+/* Quiz End */
+.quiz-end {
+    display: none;
+}
+
+.quiz-end h2 {
+    margin-bottom: 5px;
+}
+
+.quiz-end p {
+    margin-bottom: 20px;
 }
