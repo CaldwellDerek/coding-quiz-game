@@ -17,6 +17,7 @@ let playerInitials = document.querySelector("#name");
 let submitScoreButton = document.querySelector(".submit-highscore");
 let playAgainButton = document.querySelector(".back-to-start");
 let clearScoresButton = document.querySelector(".clear-scores");
+let scoreList = document.querySelector(".highscore-list");
 
 // These variables hold the questions for the quiz and the corresponding answers
 let quizQuestions = [
@@ -35,6 +36,7 @@ let quizAnswers = [
 // Keeps track of the index for quizQuestions and quizAnswers
 let index = 0;
 let timeLeft = 60;
+let score = 0;
 
 // Function that starts the timer
 function countdown() {
@@ -46,18 +48,19 @@ function countdown() {
         timer.textContent = `Timer: ${timeLeft}`;
         if (timeLeft <= 0){
             clearInterval(timeInterval);
-            timeLeft = 0;
             quizContent.setAttribute("style", "display: none;");
             quizEnd.setAttribute("style", "display: block;");
-            playerScore.textContent = `Your score is: ${timeLeft}`;
+            playerScore.textContent = `Your score is: ${score}`;
             timer.textContent = "Timer: ";
             timeLeft = 60;
+            index = 0;
         } else if (index >= 4 || quizContent.getAttribute("data-display") === "hidden"){
             clearInterval(timeInterval);
             timer.textContent = "Timer: ";
             timeLeft = 60;
+            index = 0;
         } 
-    }, 100);
+    }, 1000);
 }
 
 // Function that Changes Quiz and Answer text - proceeds to score page if out of questions
@@ -72,9 +75,10 @@ function setQuiz() {
         if (timeLeft <= 0){
             timeLeft = 0;
         }
+        score = timeLeft;
         quizContent.setAttribute("style", "display: none;");
         quizEnd.setAttribute("style", "display: block;");
-        playerScore.textContent = `Your score is: ${timeLeft}`;
+        playerScore.textContent = `Your score is: ${score}`;
         timer.textContent = "Timer: ";
     }
 }
@@ -151,9 +155,12 @@ submitScoreButton.addEventListener("click", ()=> {
     let initials = playerInitials.value;
     const regex = new RegExp(/^[A-Za-z]+$/);
     if (initials === '' || !initials.match(regex) || initials.length > 3){
-        window.alert("Please enter only letters for your initials - no more than 3 letters.");
+        window.alert("Please enter only letters for your initials - no more than 3 letters and at least 1.");
     } else {
         quizEnd.setAttribute("style", "display: none;");
+        let newHighscore = document.createElement("li");
+        newHighscore.textContent = `${initials} - ${score}`
+        scoreList.append(newHighscore);
         highscorePage.setAttribute("style", "display: block;");
     }
 })
@@ -164,5 +171,7 @@ playAgainButton.addEventListener("click", ()=> {
 })
 
 clearScoresButton.addEventListener("click", ()=> {
-
+    for (let child of scoreList.children){
+        child.remove();
+    }
 })

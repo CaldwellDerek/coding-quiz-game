@@ -101,8 +101,13 @@ span {
 
 .highscore-page {
     display: none;
+    text-align: center;
 }
 
 .highscore-page h2 {
     margin-bottom: 20px;
+}
+
+.highscore-page ol {
+    background-color: lightpink;
 }
