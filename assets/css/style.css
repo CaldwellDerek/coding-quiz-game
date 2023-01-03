@@ -62,6 +62,7 @@ h1 {
 
 ul {
     list-style: none;
+    margin-bottom: 40px;
 }
 
 li {
@@ -81,5 +82,7 @@ span:hover{
 }
 
 .right-wrong {
+    border-top: 2px solid lightgrey;
+    padding-top: 10px;
     display: none;
 }
