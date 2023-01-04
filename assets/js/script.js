@@ -66,7 +66,7 @@ function countdown() {
 }
 
 // Function that Changes Quiz and Answer text - proceeds to score page if out of questions
-function setQuiz() {
+function setQuestion() {
     if (index <= 3 && index >= 0){
         question.textContent = quizQuestions[index];
         answer1.textContent = quizAnswers[index][0];
@@ -98,7 +98,7 @@ startButton.addEventListener("click", ()=> {
     quizContent.setAttribute("style", "display: block;");
     quizContent.setAttribute("data-display", "visible");
     countdown();
-    setQuiz();
+    setQuestion();
 });
 
 answer1.addEventListener("click", ()=> {
@@ -111,7 +111,7 @@ answer1.addEventListener("click", ()=> {
         timeLeft -= 15;
     }
     index++;
-    setQuiz();
+    setQuestion();
 
     let timeInterval = setInterval(()=>{
         rightOrWrong.setAttribute("style", "display: none;");
@@ -133,7 +133,7 @@ answer2.addEventListener("click", ()=> {
         timeLeft -= 15;
     }
     index++;
-    setQuiz();
+    setQuestion();
 
     let timeInterval = setInterval(()=>{
         rightOrWrong.setAttribute("style", "display: none;");
@@ -152,7 +152,7 @@ answer3.addEventListener("click", ()=> {
         timeLeft -= 15;
     }
     index++;
-    setQuiz();
+    setQuestion();
 
     let timeInterval = setInterval(()=>{
         rightOrWrong.setAttribute("style", "display: none;");
@@ -170,7 +170,7 @@ answer4.addEventListener("click", ()=> {
         timeLeft -= 15;
     }
     index++;
-    setQuiz();
+    setQuestion();
 
     let timeInterval = setInterval(()=>{
         rightOrWrong.setAttribute("style", "display: none;");
