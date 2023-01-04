@@ -11,7 +11,9 @@ let answer1 = document.querySelector(".answer-1");
 let answer2 = document.querySelector(".answer-2");
 let answer3 = document.querySelector(".answer-3");
 let answer4 = document.querySelector(".answer-4");
+let answers = [answer1, answer2, answer3, answer4];
 let rightOrWrong = document.querySelector(".right-wrong");
+let rightOrWrongEnd = document.querySelector(".right-wrong-quiz-end");
 let playerScore = document.querySelector(".score");
 let playerInitials = document.querySelector("#name");
 let submitScoreButton = document.querySelector(".submit-highscore");
@@ -105,24 +107,39 @@ answer1.addEventListener("click", ()=> {
         rightOrWrong.setAttribute("style", "display: block;")
     } else {
         rightOrWrong.textContent = "Wrong!";
-        timeLeft -= 15;
         rightOrWrong.setAttribute("style", "display: block;")
+        timeLeft -= 15;
     }
     index++;
     setQuiz();
+
+    let timeInterval = setInterval(()=>{
+        rightOrWrong.setAttribute("style", "display: none;");
+        clearInterval(timeInterval);
+    }, 1000)
 });
 
 answer2.addEventListener("click", ()=> {
     if (question.textContent ===  quizQuestions[3]){
         rightOrWrong.textContent = "Correct!";
-        rightOrWrong.setAttribute("style", "display: block;")
+        rightOrWrong.setAttribute("style", "display: block;");
+        rightOrWrongEnd.textContent = "Correct!";
+        rightOrWrongEnd.setAttribute("style", "display: block;");
     } else {
         rightOrWrong.textContent = "Wrong!";
-        rightOrWrong.setAttribute("style", "display: block;")
+        rightOrWrong.setAttribute("style", "display: block;");
+        rightOrWrongEnd.textContent = "Wrong!";
+        rightOrWrongEnd.setAttribute("style", "display: block;");
         timeLeft -= 15;
     }
     index++;
     setQuiz();
+
+    let timeInterval = setInterval(()=>{
+        rightOrWrong.setAttribute("style", "display: none;");
+        rightOrWrongEnd.setAttribute("style", "display: none;");
+        clearInterval(timeInterval);
+    }, 1000)
 });
 
 answer3.addEventListener("click", ()=> {
@@ -136,6 +153,11 @@ answer3.addEventListener("click", ()=> {
     }
     index++;
     setQuiz();
+
+    let timeInterval = setInterval(()=>{
+        rightOrWrong.setAttribute("style", "display: none;");
+        clearInterval(timeInterval);
+    }, 1000)
 });
 
 answer4.addEventListener("click", ()=> {
@@ -149,7 +171,14 @@ answer4.addEventListener("click", ()=> {
     }
     index++;
     setQuiz();
+
+    let timeInterval = setInterval(()=>{
+        rightOrWrong.setAttribute("style", "display: none;");
+        clearInterval(timeInterval);
+    }, 1000)
 });
+
+
 
 submitScoreButton.addEventListener("click", ()=> {
     let initials = playerInitials.value;

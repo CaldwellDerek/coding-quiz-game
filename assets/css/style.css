@@ -78,7 +78,8 @@ span {
     border-radius: 7px;
 }
 
-.right-wrong {
+.right-wrong,
+.right-wrong-quiz-end {
     border-top: 2px solid lightgrey;
     padding-top: 10px;
     display: none;
@@ -93,9 +94,14 @@ span {
     margin-bottom: 5px;
 }
 
+.submit-highscore {
+    margin-bottom: 30px;
+}
+
 .quiz-end p {
     margin-bottom: 20px;
 }
+
 
 /* Highscore page */
 
