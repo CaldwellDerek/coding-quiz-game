@@ -3,6 +3,20 @@
 ## Description
 The motivation behind this project was to further my understanding of Javascript and how it can be used to interact with the DOM. After reading the rules, the player can begin the game to test their knowledge of Javascript fundamentals. A score is given to show improvement and guage understanding.
 
+## Screenshots
+
+### Start Page
+![Alt text](/assets/images/start-page.png?raw=true "Optional Title")
+
+### Question Page
+![Alt text](/assets/images/question-page.png?raw=true "Optional Title")
+
+### Completion Page
+![Alt text](/assets/images/quiz-completion-page.png?raw=true "Optional Title")
+
+### Highscore Page
+![Alt text](/assets/images/highscore-page.png?raw=true "Optional Title")
+
 ## Installation
 N/A
 
